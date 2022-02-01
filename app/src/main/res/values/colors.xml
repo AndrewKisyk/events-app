@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FD9924</color>
+    <color name="colorPrimaryDark">#282840</color>
+    <color name="spinner">#262A34</color>
+    <color name="colorAccent">#15958D</color>
+    <color name="white">#ffffff</color>
+    <color name="secondText">#A4A4BA</color>
+    <color name="glass">#80181922</color>
+    <color name="transparent_gray">#80595E6E</color>
+    <color name="gray">#595E6E</color>
+    <color name="splashBackground">#181922</color>
+    <color name="backgroundDark">#181922</color>
+    <color name="blue">#246BFD</color>
+
+</resources>

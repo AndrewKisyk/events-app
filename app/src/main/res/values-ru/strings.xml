@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Event</string>
+    <string name="select_language">выберите язык</string>
+    <string name="thanks">Спасибо за \nустановку</string>
+    <string name="english">Английский</string>
+    <string name="start">Начать</string>
+    <string name="russian">Русский</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="description_eng">
+Наш проект поможет вам скрасить серые будни, найти мероприятие на свой вкус, будь то концерт любимого музыканта, стендап-комика или просто сборище любителей косплея.</string>
+    <string name="event">Events</string>
+    <string name="for_further_work">Для дальнейшей работы вам необходимо авторизоваться или создать аккаунт</string>
+    <string name="google_sign_up">Зарегистрируйтесь с Google</string>
+    <string name="email_sign_up">Зарегистрируйтесь с Email</string>
+    <string name="hav_acc">Есть аккаунт?</string>
+    <string name="sign_in">Войти</string>
+    <string name="create">Регистрация,</string>
+    <string name="get_stated">Зарегистрируйтесь, чтобы начать!</string>
+    <string name="form_username">Имя пользователя</string>
+    <string name="email">Email</string>
+    <string name="password">Пароль</string>
+    <string name="repeat_password">Повторите пароль</string>
+    <string name="welcome">Добро пожаловать,</string>
+    <string name="sign_continue">Войдите, чтобы продолжить!</string>
+    <string name="forgot_password">Забыли пароль?</string>
+    <string name="login">Войти</string>
+    <string name="or">Или же</string>
+    <string name="sign_up">Регистрация</string>
+    <string name="invalid_username">имя неправильное</string>
+    <string name="invalid_email">email неправильный</string>
+    <string name="invalid_password">неправильный пароль</string>
+    <string name="login_failed">ошибка входа</string>
+    <string name="sign_failed">ошибкаp регистрации</string>
+    <string name="password_matches">проли не совпадают</string>
+    <string name="recover">Восстановление</string>
+    <string name="recive">мы отправим пароль на ваш email</string>
+    <string name="already_a_member"><font color='#ffffff'>Я уже пользователь,</font><font color='#246BFD'>Войти</font></string>
+    <string name="never_a_user"><font color='#ffffff'>Я новый пользователь,</font><font color='#246BFD'>Регистрация</font></string>
+
+
+</resources>

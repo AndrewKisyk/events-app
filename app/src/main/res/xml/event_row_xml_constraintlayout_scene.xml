@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="800">
+        <KeyFrameSet >
+            <KeyAttribute
+                motion:motionTarget="@+id/like"
+                motion:framePosition="40"
+                android:scaleY="0.8"
+                android:scaleX="0.8" />
+            <KeyAttribute
+                motion:motionTarget="@+id/like"
+                motion:framePosition="80"
+                android:scaleY="1.4"
+                android:scaleX="1.4" />
+        </KeyFrameSet>
+        <OnClick motion:targetId="@+id/like" />
+        <OnClick motion:targetId="@+id/like" />
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:layout_height="wrap_content"
+            motion:layout_constraintStart_toStartOf="@+id/like"
+            android:layout_marginTop="8dp"
+            android:layout_width="0dp"
+            motion:layout_constraintTop_toBottomOf="@+id/barrier4"
+            android:id="@+id/eventName"
+            motion:layout_constraintEnd_toStartOf="@+id/eventTime" />
+        <Constraint
+            android:layout_height="16dp"
+            motion:layout_constraintStart_toStartOf="@+id/eventName"
+            android:layout_width="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/eventName"
+            android:id="@+id/companyName"
+            android:layout_marginTop="8dp" />
+        <Constraint
+            android:layout_height="wrap_content"
+            motion:layout_constraintEnd_toEndOf="@+id/register"
+            android:layout_width="wrap_content"
+            android:id="@+id/eventTime"
+            motion:layout_constraintStart_toEndOf="@+id/eventName"
+            motion:layout_constraintBottom_toBottomOf="@+id/eventName"
+            motion:layout_constraintHorizontal_bias="0.0"
+            motion:layout_constraintTop_toTopOf="@+id/eventName"
+            motion:layout_constraintVertical_bias="0.0" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:layout_height="wrap_content"
+            motion:layout_constraintStart_toStartOf="@+id/like"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/barrier4"
+            android:id="@+id/eventName"
+            android:layout_marginEnd="0dp" />
+        <Constraint
+            android:layout_height="16dp"
+            motion:layout_constraintStart_toStartOf="@+id/eventName"
+            android:layout_width="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/eventName"
+            android:id="@+id/companyName"
+            android:layout_marginTop="8dp" />
+        <Constraint
+            android:layout_height="13dp"
+            motion:layout_constraintEnd_toEndOf="@+id/register"
+            android:layout_width="0dp"
+            android:id="@+id/eventTime"
+            motion:layout_constraintStart_toEndOf="@+id/eventName"
+            android:layout_marginEnd="4dp"
+            android:layout_marginRight="4dp"
+            motion:layout_constraintBottom_toBottomOf="@+id/eventName"
+            motion:layout_editor_absoluteY="120dp" />
+    </ConstraintSet>
+</MotionScene>

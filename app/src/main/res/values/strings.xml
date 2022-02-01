@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">Event</string>
+    <string name="select_language">select language</string>
+    <string name="thanks">Thanks for <br />installing</string>
+    <string name="english">English</string>
+    <string name="start">Start</string>
+    <string name="russian">Russian</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="description_eng">Our project will help you brighten up the gray everyday life, find an event to your taste, whether it be a concert of your favorite musician, stand-up comedian, or just a gathering of cosplay lovers.</string>
+    <string name="event">Events</string>
+    <string name="for_further_work">For further work you need to log in or create <br />an account</string>
+    <string name="google_sign_up">Sign up with Google</string>
+    <string name="email_sign_up">Sign up with Email</string>
+    <string name="hav_acc">Have an account?</string>
+    <string name="sign_in">Sign in</string>
+    <string name="create">Create Account,</string>
+    <string name="get_stated">Sign up to get started!</string>
+    <string name="form_username">Username</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="repeat_password">Repeat password</string>
+    <string name="already_a_member"><font color='#ffffff'>I’m already a member,</font><font color='#246BFD'> Sign in</font></string>
+    <string name="never_a_user"><font color='#ffffff'>I’m a new user,</font><font color='#246BFD'> Sign up</font></string>
+    <string name="welcome">Welcome,</string>
+    <string name="sign_continue">Sign in to continue!</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="login">Login</string>
+    <string name="or">Or</string>
+    <string name="sign_up">Sign up</string>
+    <string name="invalid_username">name is invalid</string>
+    <string name="invalid_password">password is invalid</string>
+    <string name="login_failed">login faild</string>
+    <string name="sign_failed">signup error</string>
+    <string name="invalid_email">email is invalid</string>
+    <string name="password_matches">passwords don\'t matches</string>
+    <string name="recover">Recover</string>
+    <string name="recive">you will receive an email</string>
+    <string name="search">search</string>
+    <string name="add">add</string>
+    <string name="like">like</string>
+    <string name="profile">profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="logout">logout</string>
+    <string name="recomendation">recomendation for you</string>
+    <string name="register">Register</string>
+    <string name="more">... more</string>
+</resources>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/eventsFragment">
+
+    <fragment
+        android:id="@+id/eventsFragment"
+        android:name="com.evapps.event.screens.main.views.EventsFragment"
+        android:label="Events Fragment"
+        tools:layout="@layout/events_fragment">
+        <action
+            android:id="@+id/action_eventsFragment_to_eventsDetails"
+            app:destination="@id/eventsDetails" />
+
+        <action
+            android:id="@+id/action_eventsFragment_to_recommendedDetails"
+            app:destination="@id/recommendedEventDetails" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/eventsDetails"
+        android:name="com.evapps.event.screens.main.views.EventDetailsFragment"
+        android:label="Events Details"
+        tools:layout="@layout/event_details_fragment">
+        <argument
+            android:name="model"
+            app:argType="com.evapps.event.models.Post"
+           />
+    </fragment>
+
+    <fragment
+        android:id="@+id/recommendedEventDetails"
+        android:name="com.evapps.event.screens.main.views.RecommendedEventDetailFragment"
+        android:label="Recommended Events Details"
+        tools:layout="@layout/recommended_event_detail_fragment">
+        <argument
+            android:name="model"
+            app:argType="com.evapps.event.models.Event"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.evapps.event.screens.main.views.SearchFragment"
+        android:label="Search Fragment"
+        tools:layout="@layout/search_fragment"/>
+    <fragment
+        android:id="@+id/addFragment"
+        android:name="com.evapps.event.screens.main.views.AddFragment"
+        android:label="Add Fragment"
+        tools:layout="@layout/add_fragment"/>
+    <fragment
+        android:id="@+id/likesFragment"
+        android:name="com.evapps.event.screens.main.views.LikesFragment"
+        android:label="Likes Fragment"
+        tools:layout="@layout/likes_fragment"/>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.evapps.event.screens.main.views.ProfileFragment"
+        android:label="Profile Fragment"
+        tools:layout="@layout/profile_fragment"/>
+
+
+</navigation>
