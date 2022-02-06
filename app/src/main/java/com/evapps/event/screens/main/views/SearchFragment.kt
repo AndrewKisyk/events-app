@@ -146,20 +146,31 @@ class SearchFragment : Fragment() {
     }
 
     private fun setCalendarWeekSize() {
+        val dayWidth = (screenWidth - Graphic.DOUBLE_SCREEN_MARGIN.toPx) / 7
+        val dayHeight = getWeekDayByScreen()
         binding!!.calendarBar.calendarView.apply {
-            val dayWidth = (screenWidth - Graphic.DOUBLE_SCREEN_MARGIN.toPx) / 7
-            val dayHeight = (dayWidth * 1.25)
-            this!!.daySize = Size(dayWidth.toInt(), dayHeight.toInt())
-
+            this.daySize = Size(dayWidth.toInt(), dayHeight.toInt())
         }
+        setCalendarWrapperSize(dayHeight.toInt())
     }
 
     private fun setCalendarMonthSize() {
+        val size = getDayWidthByScreen()
         binding!!.calendarBar.calendarView.apply {
-            val size = getDayWidthByScreen()
             this!!.daySize = Size(size, size)
-
         }
+    }
+
+    private fun getWeekDayByScreen(): Int {
+        return (getDayWidthByScreen() * 1.25).toInt()
+    }
+
+
+    private fun setCalendarWrapperSize(height: Int) {
+        val calendarWrapper = binding!!.calendarBar.calendarWrapper
+        val layoutParams = calendarWrapper.layoutParams as ViewGroup.LayoutParams
+        layoutParams.height = height
+        calendarWrapper.layoutParams = layoutParams
     }
 
     private fun getDayWidthByScreen(): Int {
@@ -167,8 +178,8 @@ class SearchFragment : Fragment() {
     }
 
     private fun setUpCalendarAnimationHelper() {
-        val dayMonthHeight = binding!!.calendarBar.calendarView!!.daySize.height
-        val minHeight = (dayMonthHeight * 1.5).toInt()
+        val dayMonthHeight = getDayWidthByScreen()
+        val minHeight = getWeekDayByScreen()
         val maxHeight = dayMonthHeight * 6
         calendarBarAnimationHelper.setCalendarBarParams(
             binding?.calendarBar?.container!!,
@@ -227,7 +238,7 @@ class SearchFragment : Fragment() {
     private fun changeCalendarBarState(calendarBarState: CalendarBarState) {
         if (calendarBarState == currentCalendarState) return
         currentCalendarState = calendarBarState
-        val oneWeekHeight = (binding!!.calendarBar.calendarView!!.daySize.height * 1.25).toInt()
+        val oneWeekHeight = (binding!!.calendarBar.calendarView.daySize.height * 1.25).toInt()
         val oneMonthHeight = oneWeekHeight * 5
         var oldHeight: Int = 0
         var newHeight: Int = 0
@@ -265,7 +276,7 @@ class SearchFragment : Fragment() {
                 scrollToCurrentMonth()
                 binding!!.calendarBar.calendarView.dayViewResource =
                     R.layout.small_calendar_day_layout
-                binding!!.calendarBar.calendarView?.dayBinder = setUpDaySmallContainer()
+                binding!!.calendarBar.calendarView.dayBinder = setUpDaySmallContainer()
                 setCalendarMonthSize()
             }
         }

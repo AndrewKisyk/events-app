@@ -1,5 +1,4 @@
 include ':domain'
-include ':domen'
 include ':data'
 include ':app'
 rootProject.name = "Event"

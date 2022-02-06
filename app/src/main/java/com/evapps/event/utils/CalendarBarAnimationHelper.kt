@@ -32,8 +32,8 @@ class CalendarBarAnimationHelper {
         this.minHeight = minHeight
         Log.e("minHeight", minHeight.toString())
         Log.e("maxHeight", maxHeight.toString())
-        containerMinHeight = containerView.height
-        containerMaxHeight = maxHeight + (minHeight / 1.25).toInt()
+        containerMinHeight = containerView.measuredHeight
+        containerMaxHeight = containerMinHeight - minHeight + maxHeight
         Log.e("containerMinHeight", containerMinHeight.toString())
         Log.e("containerMaxHeight", containerMaxHeight.toString())
         middleHeight = getMiddleHeight()
@@ -80,7 +80,7 @@ class CalendarBarAnimationHelper {
         var containerTargetHeight: Int
         if (containerView.height > getMiddleHeight()) {
             calendarBarState = CalendarBarState.EXPANDED
-            calendarTargetHeight = containerMaxHeight
+            calendarTargetHeight = maxHeight
             containerTargetHeight = containerMaxHeight
         } else {
             calendarBarState = CalendarBarState.COLLAPSED
