@@ -50,6 +50,7 @@ import android.view.animation.TranslateAnimation
 import androidx.dynamicanimation.animation.DynamicAnimation
 import androidx.dynamicanimation.animation.SpringAnimation
 import androidx.dynamicanimation.animation.SpringForce
+import com.evapps.event.utils.DateUtils
 
 
 class SearchFragment : Fragment() {
@@ -120,20 +121,20 @@ class SearchFragment : Fragment() {
     }
 
     private fun initCalendar() {
+        val calendar =   binding?.calendarBar?.calendarView ?: return
         val dm = DisplayMetrics()
         val wm = requireContext().getSystemService(Context.WINDOW_SERVICE) as WindowManager
         wm.defaultDisplay.getMetrics(dm)
         screenWidth = dm.widthPixels
         setCalendarWeekSize()
-        binding!!.calendarBar.calendarView?.dayBinder = setUpDayLargeContainer()
+        binding!!.calendarBar.calendarView.dayBinder = setUpDayLargeContainer()
 
-        val currentMonth = YearMonth.now()
         // Value for firstDayOfWeek does not matter since inDates and outDates are not generated.
-        binding!!.calendarBar.calendarView?.setup(
-            currentMonth.minusMonths(1),
-            currentMonth.plusMonths(3),
-            DayOfWeek.values().random()
-        )
+        val daysOfWeek = DateUtils.daysOfWeekFromLocale()
+        val currentMonth = YearMonth.now()
+        val startMonth = currentMonth.minusMonths(10)
+        val endMonth = currentMonth.plusMonths(10)
+        calendar.setup(startMonth, endMonth, daysOfWeek.first())
         scrollToCurrentDay()
 
         var firstDrawing = true

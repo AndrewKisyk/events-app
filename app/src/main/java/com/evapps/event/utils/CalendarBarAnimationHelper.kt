@@ -116,7 +116,7 @@ class CalendarBarAnimationHelper {
     }
 
     private fun getMiddleHeight(): Int {
-        return containerMaxHeight!!.div(2)!!
+        return containerMaxHeight.div(2)
     }
 
     fun getCalendarState(): CalendarBarState {
@@ -132,9 +132,9 @@ class CalendarBarAnimationHelper {
         return if (view.height == minHeight || view.height == maxHeight) {
             VISIBLE
         } else if (view.height < middleHeight!!) {
-            minHeight!!.toFloat().div(view.height).minus(VISIBLATY_DECREASE)
+            minHeight.toFloat().div(view.height).minus(VISIBLATY_DECREASE)
         } else {
-            maxHeight!!.toFloat().div(view.height).minus(VISIBLATY_DECREASE)
+            maxHeight.toFloat().div(view.height).minus(VISIBLATY_DECREASE)
         }
     }
 
