@@ -49,11 +49,11 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnLogOut"
                     android:layout_width="140dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:background="@drawable/primarrybuton"
                     android:text="@string/logout"
-                    android:onClick="@{(v)->viewModel.logout()}"
                     android:clickable="true"
                     android:foreground="@drawable/ripple_effect"
                     app:layout_constraintBottom_toBottomOf="parent"

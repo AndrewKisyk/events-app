@@ -19,7 +19,7 @@
         android:layout_width="78dp"
         android:layout_height="80dp"
         android:orientation="vertical"
-        android:onClick="@{v -> adapter.itemSelected(v, vm)}"
+        app:onAnimationClick="@{v -> adapter.itemSelected(v, vm)}"
         android:transitionName="@{vm.title}"
         app:layoutDescription="@xml/recomended_events_xml_constraintlayout2_scene">
 

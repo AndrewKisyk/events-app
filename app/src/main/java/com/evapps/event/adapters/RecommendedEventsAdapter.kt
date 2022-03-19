@@ -15,6 +15,8 @@ import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.NavHostFragment
 import com.evapps.event.BR
 import com.evapps.event.R
+import com.evapps.event.extensions.NavigationExtensions.navigateSafe
+import com.evapps.event.extensions.ViewExtensions.setAnimationOnClick
 import com.evapps.event.models.Event
 import com.evapps.event.models.FakeEvents
 import com.evapps.event.models.FakePosts
@@ -47,6 +49,14 @@ object  RecommendedEventsAdapter : ViewModelAdapter() {
         fun setImageViewResource(imageView: ImageView, url: String) {
             Picasso.get().load(url).into(imageView)
         }
+
+        @BindingAdapter("onAnimationClick")
+        @JvmStatic
+        fun setOnAnimationClick(view: View, clickListener: View.OnClickListener) {
+            view.setAnimationOnClick {
+                clickListener.onClick(view)
+           }
+        }
     }
 
 
@@ -58,7 +68,8 @@ object  RecommendedEventsAdapter : ViewModelAdapter() {
             background to model.title
         )
         val action = EventsFragmentDirections.actionEventsFragmentToRecommendedDetails(model)
-        NavHostFragment.findNavController(view.findFragment()).navigate(action, extras)
+        val navController = NavHostFragment.findNavController(view.findFragment())
+        NavHostFragment.findNavController(view.findFragment()).navigateSafe(action, extras)
     }
 
 }

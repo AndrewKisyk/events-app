@@ -10,6 +10,7 @@ import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import com.evapps.event.BR
 import com.evapps.event.R
+import com.evapps.event.extensions.NavigationExtensions.navigateSafe
 import com.evapps.event.models.Event
 import com.evapps.event.models.FakeEvents
 import com.evapps.event.models.FakePosts
@@ -37,6 +38,6 @@ object EventsAdapter : ViewModelAdapter() {
 
         val action =
             EventsFragmentDirections.actionEventsFragmentToEventsDetails(model)
-        findNavController(view.findFragment()).navigate(action, extras)
+        findNavController(view.findFragment()).navigateSafe(action, extras)
     }
 }
