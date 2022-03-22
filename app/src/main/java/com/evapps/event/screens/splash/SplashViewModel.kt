@@ -1,10 +1,9 @@
 package com.evapps.event.screens.splash
 
-import com.evapps.domain.repositories.LoginRepository
 import com.evapps.event.models.Language
 import com.evapps.event.navigation.RouteDestination
 import com.evapps.event.screens.base.BaseViewModelImpl
-import com.evapps.event.utils.PreferenceManager
+import com.evapps.data.local.PreferenceManager
 
 class SplashViewModel() : BaseViewModelImpl<SplashState>() {
 

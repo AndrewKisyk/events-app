@@ -8,22 +8,26 @@ import android.view.inputmethod.EditorInfo
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.evapps.event.EventApp
 import com.evapps.event.R
 import com.evapps.event.databinding.LogInFragmentBinding
+import com.evapps.event.extensions.launchWhenStarted
 
 import com.evapps.event.screens.base.BaseFragment
 import com.evapps.event.screens.log_in.states.LogInState
 import com.evapps.event.screens.log_in.view_models.LogInViewModel
 
 import kotlinx.android.synthetic.main.log_in_fragment.*
+import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 
 class LogInFragment : BaseFragment<LogInState, LogInViewModel>() {
 
-    @Inject override lateinit var viewModel: LogInViewModel
+    @Inject
+    override lateinit var viewModel: LogInViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,7 +36,7 @@ class LogInFragment : BaseFragment<LogInState, LogInViewModel>() {
     ): View? {
         EventApp.appComponent.inject(fragment = this)
 
-       val binding = DataBindingUtil.inflate<ViewDataBinding>(
+        val binding = DataBindingUtil.inflate<ViewDataBinding>(
             inflater, R.layout.log_in_fragment, container, false
         ) as LogInFragmentBinding
 
@@ -40,18 +44,15 @@ class LogInFragment : BaseFragment<LogInState, LogInViewModel>() {
         val view = binding.root
 
 
-        viewModel.loginResult.observe(viewLifecycleOwner, Observer {
-            val loginResult = it ?: return@Observer
-
-          //  loading.visibility = View.GONE
+        viewModel.loginResult.onEach { loginResult ->
             if (loginResult.error != null) {
                 showToastError(loginResult.error)
             }
             if (loginResult.success != null) {
                 updateUiWithUser(loginResult.success)
             }
-            //Complete and destroy login activity once successful
-        })
+        }.launchWhenStarted(lifecycleScope)
+
 
         binding.email.afterTextChanged {
             viewModel.loginDataChanged(
@@ -80,9 +81,9 @@ class LogInFragment : BaseFragment<LogInState, LogInViewModel>() {
             }
 
             binding.login.setOnClickListener {
-              //  binding.loading.visibility = View.VISIBLE
+                //  binding.loading.visibility = View.VISIBLE
                 viewModel.login(binding.email.text.toString(), binding.password.text.toString())
-             //   Navigation.findNavController(view).navigate(R.id.main_activity)
+                //   Navigation.findNavController(view).navigate(R.id.main_activity)
             }
         }
 
@@ -90,14 +91,12 @@ class LogInFragment : BaseFragment<LogInState, LogInViewModel>() {
     }
 
 
-
-   /* override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }*/
+    /* override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+         super.onViewCreated(view, savedInstanceState)
+     }*/
 
     override fun onStateChange(state: LogInState) {
-        viewModel.loginFormState.observe(viewLifecycleOwner, Observer {
-            val loginState = it ?: return@Observer
+        viewModel.loginFormState.onEach { loginState ->
             // disable login button unless both username / password is valid
             login.isEnabled = loginState.isDataValid
 
@@ -108,7 +107,7 @@ class LogInFragment : BaseFragment<LogInState, LogInViewModel>() {
             if (loginState.passwordError != null) {
                 password.error = getString(loginState.passwordError)
             }
-        })
+        }.launchWhenStarted(lifecycleScope)
     }
 
 }

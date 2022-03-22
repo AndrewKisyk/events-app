@@ -10,10 +10,9 @@ import com.evapps.domain.repositories.LoginRepository
 
 class UserViewModel(private val loginRepository: LoginRepository):ViewModel() {
     private val TAG = "UserViewModel"
-    var user = loginRepository.getCurrentUser() as MediatorLiveData<LoggedInUser>
-    var userIsLoggin: Boolean = loginRepository.isLoggedIn
+
     fun logout(){
-        loginRepository.logout()
+
     }
 
 }

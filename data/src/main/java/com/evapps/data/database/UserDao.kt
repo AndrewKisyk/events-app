@@ -1,27 +1,31 @@
 package com.evapps.data.database
 
-import androidx.room.Dao
-import androidx.room.Insert
+import androidx.room.*
 import androidx.room.OnConflictStrategy.REPLACE
-import androidx.room.Query
-import androidx.room.Update
 import com.evapps.data.models.LoggedInUser
-import io.reactivex.rxjava3.core.Flowable
-import kotlinx.coroutines.flow.Flow
-
 
 @Dao
 interface UserDao {
 
     @Update
-    fun update(user: LoggedInUser?)
+    suspend fun update(user: LoggedInUser?)
 
     @Insert(onConflict = REPLACE)
-    fun save(user: LoggedInUser)
+    suspend fun save(user: LoggedInUser)
 
     @Query("SELECT * FROM loggedInUser WHERE userId = :id")
-    fun load(id: String): LoggedInUser
+    suspend fun load(id: String): LoggedInUser
 
     @Query("SELECT * FROM loggedInUser")
-    fun getFirst(): LoggedInUser?
+    suspend fun getFirst(): LoggedInUser?
+
+    @Transaction
+    suspend fun insertOrUpdate(loggedInUser: LoggedInUser) {
+        val user = load(loggedInUser.userId)
+        return if (user == null) {
+            save(loggedInUser)
+        } else {
+            update(loggedInUser)
+        }
+    }
 }

@@ -13,7 +13,7 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [ApplicationModule::class, ScreenModule::class, VMModule::class, DBModule::class])
+@Component(modules = [ApplicationModule::class, ScreenModule::class, VMModule::class, DBModule::class, DispatcherModule::class, RepositoryModule::class])
 interface AppComponent {
 
     //Fragments

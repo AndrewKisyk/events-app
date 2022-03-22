@@ -6,7 +6,7 @@ import android.os.Build
 import android.os.LocaleList
 import androidx.appcompat.app.AppCompatActivity
 import com.evapps.event.utils.ContextUtils.Companion.updateConfigurationIfSupported
-import com.evapps.event.utils.PreferenceManager
+import com.evapps.data.local.PreferenceManager
 import java.util.*
 
 

@@ -7,7 +7,6 @@ import com.evapps.domain.repositories.LoginRepository
 class ProfileViewModel(private val loginRepository: LoginRepository): ViewModel() {
 
     fun logout(){
-       loginRepository.logout()
         Log.d("Profile", "Clicked")
     }
 }

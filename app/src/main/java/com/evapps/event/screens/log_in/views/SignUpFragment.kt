@@ -8,9 +8,11 @@ import android.view.inputmethod.EditorInfo
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import com.evapps.event.EventApp
 import com.evapps.event.R
 import com.evapps.event.databinding.SignUpFragmentBinding
+import com.evapps.event.extensions.launchWhenStarted
 import com.evapps.event.screens.base.BaseFragment
 import com.evapps.event.screens.log_in.states.SignUpState
 import com.evapps.event.screens.log_in.view_models.SignUpViewModel
@@ -18,6 +20,7 @@ import kotlinx.android.synthetic.main.log_in_fragment.email
 import kotlinx.android.synthetic.main.log_in_fragment.password
 
 import kotlinx.android.synthetic.main.sign_up_fragment.*
+import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 class SignUpFragment : BaseFragment<SignUpState, SignUpViewModel>() {
@@ -38,9 +41,7 @@ class SignUpFragment : BaseFragment<SignUpState, SignUpViewModel>() {
         binding.viewModel = viewModel
         val view = binding.root
 
-        viewModel.signUpFormState.observe(viewLifecycleOwner, Observer {
-            val signUpState = it ?: return@Observer
-
+        viewModel.signUpFormState.onEach { signUpState ->
             // disable signup button unless both username / password is valid
             signup.isEnabled = signUpState.isDataValid
 
@@ -59,20 +60,16 @@ class SignUpFragment : BaseFragment<SignUpState, SignUpViewModel>() {
             if (signUpState.passwordMatchesError != null) {
                 repeatPassword.error = getString(signUpState.passwordMatchesError)
             }
-        })
+        }.launchWhenStarted(lifecycleScope)
 
-        viewModel.loginResult.observe(viewLifecycleOwner, Observer {
-            val loginResult = it ?: return@Observer
-
-          //  binding.loading.visibility = View.GONE
+        viewModel.loginResult.onEach { loginResult ->
             if (loginResult.error != null) {
                 showToastError(loginResult.error)
             }
             if (loginResult.success != null) {
                 updateUiWithUser(loginResult.success)
             }
-            //Complete and destroy login activity once successful
-        })
+        }.launchWhenStarted(lifecycleScope)
 
         binding.userName.afterTextChanged {
             viewModel.signUpDataChanged(

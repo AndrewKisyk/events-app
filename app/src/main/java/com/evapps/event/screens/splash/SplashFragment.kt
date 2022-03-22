@@ -10,13 +10,12 @@ import android.view.View.OnTouchListener
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
-import androidx.navigation.Navigation
 import com.evapps.event.EventApp
 import com.evapps.event.R
 import com.evapps.event.models.Language
 import com.evapps.event.screens.base.BaseFragment
 import com.evapps.event.screens.log_in.AuthActivity
-import com.evapps.event.utils.PreferenceManager
+import com.evapps.data.local.PreferenceManager
 import kotlinx.android.synthetic.main.splash_fragment.*
 import javax.inject.Inject
 

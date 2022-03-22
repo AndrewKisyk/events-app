@@ -93,10 +93,10 @@ abstract class BaseFragment<VS : BaseViewState, VM : BaseViewModel<VS>> : Fragme
     protected open fun onReturnToPreviousScreen() {
         findNavController().popBackStack()
     }
+
     fun updateUiWithUser(model: LoggedInUserView) {
         val welcome = getString(R.string.welcome)
         val displayName = model.displayName
-        // TODO : initiate successful logged in experience
         Toast.makeText(
             context,
             "$welcome $displayName",

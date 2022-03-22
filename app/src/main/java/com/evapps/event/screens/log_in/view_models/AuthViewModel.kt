@@ -23,6 +23,6 @@ abstract class AuthViewModel<T:BaseViewState>: BaseViewModelImpl<T>() {
 
     // A placeholder email validation check
     fun isEmailValid(username: String): Boolean {
-        return  Patterns.EMAIL_ADDRESS.matcher(username).matches()
+        return Patterns.EMAIL_ADDRESS.matcher(username).matches()
     }
 }

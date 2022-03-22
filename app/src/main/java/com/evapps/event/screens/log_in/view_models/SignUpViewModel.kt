@@ -2,6 +2,7 @@ package com.evapps.event.screens.log_in.view_models
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.evapps.data.local.Result
 import com.evapps.domain.repositories.LoginRepository
 import com.evapps.event.R
@@ -9,25 +10,28 @@ import com.evapps.event.models.LoggedInUserView
 import com.evapps.event.models.LoginResult
 import com.evapps.event.navigation.RouteDestination
 import com.evapps.event.screens.log_in.states.SignUpState
-import com.evapps.event.screens.log_in.view_models.AuthViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 
 class SignUpViewModel(private val loginRepository: LoginRepository): AuthViewModel<SignUpState>()  {
     override val initialState =
         SignUpState()
-    private val _signupForm = MutableLiveData<SignUpState>()
-    val signUpFormState: LiveData<SignUpState> = _signupForm
+    private val _signupForm = MutableStateFlow(SignUpState())
+    val signUpFormState: StateFlow<SignUpState> = _signupForm
 
-    private val _signupResult  = MutableLiveData<LoginResult>()
-    val loginResult: LiveData<LoginResult> = _signupResult   // it isn't any difference between signUp and login result
+    private val _signupResult  = MutableStateFlow(LoginResult())
+    val loginResult: StateFlow<LoginResult> = _signupResult   // it isn't any difference between signUp and login result
 
     fun signup(username: String, email: String, password: String) {
         // can be launched in a separate asynchronous job
-        val result = loginRepository.signup(username, email, password)
-
-        if (result is Result.Success) {
-            _signupResult.value = LoginResult(success = LoggedInUserView(displayName = result.data.displayName))
-        } else {
-            _signupResult.value = LoginResult(error = R.string.sign_failed)
+        viewModelScope.launch {
+            val result = loginRepository.signup(username, email, password)
+            if (result is Result.Success) {
+                _signupResult.value = LoginResult(success = LoggedInUserView(displayName = result.data.displayName))
+            } else {
+                _signupResult.value = LoginResult(error = R.string.sign_failed)
+            }
         }
     }
 

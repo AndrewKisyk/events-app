@@ -15,4 +15,18 @@ sealed class Result<out T : Any> {
             is Error -> "Error[exception=$exception]"
         }
     }
+
+    inline fun doOnSuccess(body: (data: T) -> Unit): Result<T> {
+        when (this) {
+            is Success<T> -> body.invoke(this.data)
+        }
+        return this
+    }
+
+    inline fun doOnError(body: (exception: Exception) -> Unit): Result<T> {
+        when (this) {
+            is Error -> body.invoke(exception)
+        }
+        return this
+    }
 }

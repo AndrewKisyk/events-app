@@ -42,18 +42,20 @@ class AuthActivity : BaseActivity(), AppBarController {
         initNavigation()
 
         setUpBottomNav(navController)
-
-        viewModel.user?.observe(this, Observer {
-            if(it != null) {
-                showBottomNavigation()
-                showBar()
-                setUpMainGraph()
-            } else {
                 hideBottomNavigation()
                 hideBar()
                 setUpLoginGraph()
-            }
-        } )
+//        viewModel.user?.observe(this, Observer {
+//            if(it != null) {
+//                showBottomNavigation()
+//                showBar()
+//                setUpMainGraph()
+//            } else {
+//                hideBottomNavigation()
+//                hideBar()
+//                setUpLoginGraph()
+//            }
+//        } )
 
 
 
